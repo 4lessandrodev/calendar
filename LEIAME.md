@@ -22,9 +22,9 @@ Essa estrutura de árvore permite uma organização clara e eficiente de eventos
 
 Com a **Lib Calendário Configurável**, é possível criar calendários de diversas maneiras:
 
-1. **Para Todos os Dias**: Defina a hora de início, hora de fim e a duração de cada slot para todos os dias.
-2. **Para Dias Específicos**: Escolha dias da semana (segunda-feira, terça-feira, etc.) e configure a hora de início, hora de fim e duração do slot para cada um desses dias.
-3. **Em Intervalos Específicos**: Configure o calendário para dias específicos (por exemplo, a cada 15 dias, 30 dias) a partir de uma data inicial, definindo a hora de início, hora de fim e a duração do slot.
+1. **Para Todos os Dias**: Defina a data de início, data fim, hora de início, hora de fim e a duração de cada slot para todos os dias.
+2. **Para Dias Específicos**: Defina data de inicio, data fim, escolha dias da semana (segunda-feira, terça-feira, etc.) e configure a hora de início, hora de fim e duração do slot para cada um desses dias.
+3. **Em Intervalos Específicos**: Configure o calendário para dias específicos (por exemplo, a cada 15 dias, 30 dias) a partir de uma data inicial, definindo a hora de início, hora de fim a duração do slot e a data fim.
 
 ## Como Usar
 

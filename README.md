@@ -22,9 +22,9 @@ This tree structure enables clear and efficient organization of events and infor
 
 With the **Configurable Calendar Lib**, you can create calendars in various ways:
 
-1. **For All Days**: Set the start time, end time, and slot duration for every day.
-2. **For Specific Days**: Choose specific weekdays (Monday, Tuesday, etc.) and set the start time, end time, and slot duration for each of these days.
-3. **At Specific Intervals**: Configure the calendar for specific days (e.g., every 15 days, 30 days) from an initial date, defining the start time, end time, and slot duration.
+1. **For All Days**: Set the start date, end date, start time, end time, and slot duration for every day.
+2. **For Specific Days**: Set the start date, end date, and choose specific weekdays (Monday, Tuesday, etc.) and set the start time, end time, and slot duration for each of these days.
+3. **At Specific Intervals**: Configure the calendar for specific days (e.g., every 15 days, 30 days) from an initial date, defining the start time, end time, slot duration and end date.
 
 ## Getting Started
 
