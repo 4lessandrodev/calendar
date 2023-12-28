@@ -8,5 +8,8 @@
   },
   "keywords": [],
   "author": "4lessandro",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "rich-domain": "^1.19.1"
+  }
 }

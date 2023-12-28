@@ -1,0 +1,17 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  rich-domain:
+    specifier: ^1.19.1
+    version: 1.19.1
+
+packages:
+
+  /rich-domain@1.19.1:
+    resolution: {integrity: sha512-llO9SxD12gLx9W+2/xBt2a7lP2owBMyVqNfxNAHs3bYfTAS03/+XqLFVTTHaLb20q7viz8ftIbe39n+ttBfQpA==}
+    engines: {node: '>=16.x <19'}
+    dev: false
