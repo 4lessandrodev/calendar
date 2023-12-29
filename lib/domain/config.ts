@@ -1,9 +1,8 @@
 import { Entity } from 'rich-domain';
+import Date from './date';
 
 type Props = {
-    /**
-     * @todo implementar propriedades
-     */
+    startDate: Date
 };
 export default class Config extends Entity<Props> { 
     /**
