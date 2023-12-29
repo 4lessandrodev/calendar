@@ -1,9 +1,10 @@
 import { ValueObject } from "rich-domain";
+import TreeNode from "@domain/tree-node";
+import Year from "@domain/year";
+import List from "@domain/list";
 
 type Props = {
-    /**
-     * @todo implementar propriedades
-     */
+    years: List<TreeNode<Year>>;
 };
 
 export default class TimeLine extends ValueObject<Props> {
