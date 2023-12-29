@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "rich-domain": "^1.19.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
   }
 }
