@@ -18,5 +18,35 @@ describe('config', () => {
         });
 
         expect(config.isOk()).toBeTruthy();
-    })
+    });
+
+    it('should return fail if provide start-date lte end-date', () => {
+        const minutes = Minute.create({ value: 15 }).value();
+        const startDate = DateTime.create({ value: new Date('2024-01-01T00:00:00') }).value();
+        const endDate = DateTime.create({ value: new Date('2024-01-01T00:00:00') }).value();
+        const slotDuration = SlotDuration.create({ minutes }).value();
+
+        const config = Config.create({
+            startDate,
+            endDate,
+            slotDuration,
+        });
+
+        expect(config.isFail()).toBeTruthy();
+    });
+    
+    it('should return fail if provide start-date lte end-date', () => {
+        const minutes = Minute.create({ value: 15 }).value();
+        const startDate = DateTime.create({ value: new Date('2024-01-02T00:00:00') }).value();
+        const endDate = DateTime.create({ value: new Date('2024-01-01T00:00:00') }).value();
+        const slotDuration = SlotDuration.create({ minutes }).value();
+
+        const config = Config.create({
+            startDate,
+            endDate,
+            slotDuration,
+        });
+
+        expect(config.isFail()).toBeTruthy();
+    });
 });

@@ -25,7 +25,7 @@ export default class DateTime extends ValueObject<Props>{
         const currentTime = this.getTime();
         const dtTime = date.getTime();
         const diff = currentTime - dtTime;
-        return diff / this.oneDayInMs;
+        return Math.trunc(diff / this.oneDayInMs);
     }
 
     public static create(props: Props): Result<DateTime> {
