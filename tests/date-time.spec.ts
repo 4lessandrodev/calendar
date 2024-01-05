@@ -1,6 +1,6 @@
 import DateTime from "@/domain/date";
 
-describe('date-time', () => {
+describe('DateTime', () => {
     it('should create date time with success', () => {
         const value = new Date('2024-01-01T00:00:00');
         const date = DateTime.create({ value });

@@ -9,7 +9,7 @@ export * from './month';
 export * from './slot-duration';
 export * from './slot';
 export * from './time-line';
-export * from './time';
+export * from './hour';
 export * from './tree-node';
 export * from './week';
 export * from './year';

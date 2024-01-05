@@ -7,17 +7,17 @@ import Minute from "@/domain/minute";
 import Month from "@/domain/month";
 import Slot from "@/domain/slot";
 import SlotDuration from "@/domain/slot-duration";
-import Hour from "@/domain/time";
+import Hour from "@/domain/hour";
 import TimeLine from "@/domain/time-line";
 import TreeNode from "@/domain/tree-node";
 import Year from "@/domain/year";
 
-describe('calendar', () => {
+describe('Calendar', () => {
     it('should create calendar with success', () => {
-        
+
         const slot = Slot.create({ start: '08:00', end: '08:30' }).value();
         const hour = Hour.create({ slots: new TreeNode(slot), hour: 8 }).value();
-        const day = Day.create({ day: 1, hours: new TreeNode(hour) }).value();
+        const day = Day.create({ day: 1, hours: new TreeNode(hour), week: 1 }).value();
         const month = Month.create({ month: 1, days: new BinaryTreeNode(day) }).value();
         const year = Year.create({ year: 2024, months: new BinaryTreeNode(month) }).value();
         const timeLine = TimeLine.create({ years: new BinaryTreeNode(year) }).value();

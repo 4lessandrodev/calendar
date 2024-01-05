@@ -1,6 +1,6 @@
 import Slot from "@/domain/slot";
 
-describe('slot', () => {
+describe('Slot', () => {
     it('should crete valid slot', () => {
         const start = '08:00';
         const end = '08:15';

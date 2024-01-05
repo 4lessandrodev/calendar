@@ -2,7 +2,7 @@ import Minute from "@/domain/minute";
 import SlotDuration from "@/domain/slot-duration";
 
 
-describe('slot-duration', () => {
+describe('SlotDuration', () => {
     it('should create slot with success', () => {
         const minutes = Minute.create({ value: 15 }).value();
         const slot = SlotDuration.create({ minutes });

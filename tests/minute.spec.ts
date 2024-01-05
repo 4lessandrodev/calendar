@@ -1,6 +1,6 @@
 import Minute from "@/domain/minute";
 
-describe('minute', () => {
+describe('Minute', () => {
     it('should create a minute with success', () => {
         const minute = Minute.create({ value: 1 });
         expect(minute.isOk()).toBeTruthy();

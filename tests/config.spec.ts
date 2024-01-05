@@ -3,7 +3,7 @@ import DateTime from "@/domain/date";
 import Minute from "@/domain/minute";
 import SlotDuration from "@/domain/slot-duration";
 
-describe('config', () => {
+describe('Config', () => {
     it('should create a calendar config with success', () => {
 
         const minutes = Minute.create({ value: 15 }).value();
