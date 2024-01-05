@@ -14,6 +14,7 @@ export default class Month extends ValueObject<Props> {
     }
 
     public static create(props: Props): Result<Month> {
+        /** @todo validate min and max month value */
         return Ok(new Month(props));
     }
 }

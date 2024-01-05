@@ -14,6 +14,7 @@ export default class Day extends ValueObject<Props> {
     }
 
     public static create(props: Props): Result<Day> {
+        /** @todo validate min and max day value */
         return Ok(new Day(props));
     }
 }

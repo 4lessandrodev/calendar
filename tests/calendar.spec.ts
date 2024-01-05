@@ -16,7 +16,7 @@ describe('calendar', () => {
     it('should create calendar with success', () => {
         
         const slot = Slot.create({ start: '08:00', end: '08:30' }).value();
-        const hour = Hour.create({ slots: new TreeNode(slot) }).value();
+        const hour = Hour.create({ slots: new TreeNode(slot), hour: 8 }).value();
         const day = Day.create({ day: 1, hours: new TreeNode(hour) }).value();
         const month = Month.create({ month: 1, days: new BinaryTreeNode(day) }).value();
         const year = Year.create({ year: 2024, months: new BinaryTreeNode(month) }).value();

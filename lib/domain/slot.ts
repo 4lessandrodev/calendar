@@ -3,6 +3,7 @@ import { Fail, Ok, Result, ValueObject } from "rich-domain";
 type Props = {
     start: string; // 08:30
     end: string; // 08:45
+    event?: any // schedule or block
 }
 
 export default class Slot extends ValueObject<Props> {

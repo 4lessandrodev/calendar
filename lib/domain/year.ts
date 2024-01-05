@@ -14,6 +14,7 @@ export default class Year extends ValueObject<Props> {
     }
 
     public static create(props: Props): Result<Year> {
+        /** @todo validate min and max year value */
         return Ok(new Year(props));
     }
 }
