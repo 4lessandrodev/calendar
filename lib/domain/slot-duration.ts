@@ -1,5 +1,5 @@
 import { Fail, Ok, Result, ValueObject } from "rich-domain";
-import Minute from "./minute";
+import Minute from "@domain/minute";
 
 type Props = {
     minutes: Minute;

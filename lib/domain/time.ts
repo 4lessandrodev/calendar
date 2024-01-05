@@ -1,6 +1,6 @@
 import { ValueObject } from "rich-domain";
-import TreeNode from "./tree-node";
-import Slot from "./slot";
+import TreeNode from "@domain/tree-node";
+import Slot from "@domain/slot";
 
 type Props = {
     slots: TreeNode<Slot>

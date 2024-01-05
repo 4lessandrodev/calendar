@@ -12,13 +12,3 @@ export default class List<T> {
         )
     }
 }
-
-const list = new List<string>([]);
-
-list.add('oi')
-
-console.log(list);
-
-list.remove('oi')
-
-console.log(list)

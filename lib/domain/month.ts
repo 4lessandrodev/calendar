@@ -1,6 +1,6 @@
 import { ValueObject } from "rich-domain";
-import BinaryTreeNode from "./binary-tree-node";
-import Day from "./day";
+import BinaryTreeNode from "@domain/binary-tree-node";
+import Day from "@domain/day";
 
 type Props = {
     days: BinaryTreeNode<Day>

@@ -1,6 +1,6 @@
 import { Entity, Fail, Ok, Result } from 'rich-domain';
 import DateTime from '@domain/date';
-import SlotDuration from './slot-duration';
+import SlotDuration from '@domain/slot-duration';
 
 type Props = {
     startDate: DateTime;

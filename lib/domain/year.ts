@@ -1,6 +1,6 @@
 import { ValueObject } from "rich-domain";
-import BinaryTreeNode from "./binary-tree-node";
-import Month from "./month";
+import BinaryTreeNode from "@domain/binary-tree-node";
+import Month from "@domain/month";
 
 type Props = {
     months: BinaryTreeNode<Month>

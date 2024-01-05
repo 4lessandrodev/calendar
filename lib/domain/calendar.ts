@@ -1,6 +1,6 @@
 import { Aggregate } from "rich-domain"
-import TimeLine from "./time-line"
-import Config from "./config";
+import TimeLine from "@domain/time-line"
+import Config from "@domain/config";
 
 type Props = {
     timeLine: TimeLine;
