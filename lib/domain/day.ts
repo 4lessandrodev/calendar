@@ -3,6 +3,7 @@ import TreeNode from "@domain/tree-node";
 import Hour from "@domain/time";
 
 type Props = {
+    day: number;
     hours: TreeNode<Hour>
 }
 

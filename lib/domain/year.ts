@@ -3,6 +3,7 @@ import BinaryTreeNode from "@domain/binary-tree-node";
 import Month from "@domain/month";
 
 type Props = {
+    year: number;
     months: BinaryTreeNode<Month>
 };
 
