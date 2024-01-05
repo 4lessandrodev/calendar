@@ -9,6 +9,7 @@ export default class SlotDuration extends ValueObject<Props> {
 
     private static minDuration: number = 4;
     private static maxDuration: number = 61;
+    private static multiple: number = 5;
 
     private constructor(props: Props) {
         super(props)
@@ -17,14 +18,18 @@ export default class SlotDuration extends ValueObject<Props> {
     public static isValidProps({ minutes }: Props): boolean {
         const min = this.minDuration;
         const max = this.maxDuration;
-        return minutes && minutes.isBetween(min, max);
+        const multiple = this.multiple;
+        const isMultiple = minutes.isMultiple(multiple);
+        return minutes && isMultiple && minutes.isBetween(min, max);
     }
 
     public static create(props: Props): Result<SlotDuration> {
         const isValid = this.isValidProps(props);
         const min = this.minDuration;
         const max = this.maxDuration;
-        if (!isValid) return Fail(`Slot duration must be between ${max} and ${min}`);
+        const multiple = this.multiple;
+        const msg = `Slot duration must be between ${max} and ${min}, and multiple of ${multiple}`
+        if (!isValid) return Fail(msg);
         return Ok(new SlotDuration(props));
     }
 }

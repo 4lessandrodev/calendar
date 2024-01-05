@@ -13,4 +13,10 @@ describe('minute', () => {
         expect(minute.isBetween(15, 16)).toBeFalsy();
         expect(minute.isBetween(14, 15)).toBeFalsy();
     });
+
+    it('should return true 15 is 5 multiple', () => {
+        const minute = Minute.create({ value: 15 }).value();
+        expect(minute.isMultiple(5)).toBeTruthy();
+        expect(minute.isMultiple(6)).toBeFalsy();
+    })
 });

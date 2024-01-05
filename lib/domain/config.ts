@@ -7,6 +7,7 @@ type Props = {
     endDate: DateTime;
     slotDuration: SlotDuration;
 };
+
 export default class Config extends Entity<Props> {
 
     private constructor(props: Props) {
@@ -14,15 +15,14 @@ export default class Config extends Entity<Props> {
     }
 
     public static isValidProps({ startDate, endDate }: Props): boolean {
-        const isGt = endDate.isGt(startDate);
         const diffInDays = endDate.diffInDays(startDate);
         const hasMoreThanOneDay = this.validator.number(diffInDays).isGreaterThan(1);
-        return isGt && hasMoreThanOneDay;
+        return hasMoreThanOneDay;
     }
 
     public static create(props: Props): Result<Config> {
         const isValid = this.isValidProps(props);
-        const msg = 'Invalid properties: endDate must be greater than startDate and the difference between them must be more than one day.';
+        const msg = 'The difference between startDate and endDate must be more than one day.';
         if(!isValid) return Fail(msg);
         return Ok(new Config(props));
     }

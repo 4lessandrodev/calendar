@@ -9,6 +9,12 @@ describe('slot-duration', () => {
         expect(slot.isOk()).toBeTruthy();
     });
 
+    it('should return fail if value is not 5 multiple', () => {
+        const minutes = Minute.create({ value: 6 }).value();
+        const slot = SlotDuration.create({ minutes });
+        expect(slot.isFail()).toBeTruthy();
+    });
+
     it('should return fail if value is lt 5 minutes', () => {
         const minutes = Minute.create({ value: 3 }).value();
         const slot = SlotDuration.create({ minutes });
