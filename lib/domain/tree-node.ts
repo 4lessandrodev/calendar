@@ -7,7 +7,8 @@ export default class TreeNode<T> {
         this.children = [];
     }
 
-    addChild(child: TreeNode<T>): void {
+    addChild(child: TreeNode<T>): TreeNode<T> {
         this.children.push(child);
+        return this;
     }
 }

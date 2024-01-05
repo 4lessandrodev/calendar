@@ -1,12 +1,12 @@
 import { ValueObject } from "rich-domain";
+import TreeNode from "./tree-node";
+import Slot from "./slot";
 
 type Props = {
-    /**
-     * @todo implementar propriedades
-     */
+    slots: TreeNode<Slot>
 }
 
-export default class Time extends ValueObject<Props> {
+export default class Hour extends ValueObject<Props> {
     /**
      * @todo implementar métodos
      */

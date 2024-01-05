@@ -1,9 +1,9 @@
 import { ValueObject } from "rich-domain";
+import BinaryTreeNode from "./binary-tree-node";
+import Month from "./month";
 
 type Props = {
-    /**
-     * @todo implementar propriedades
-     */
+    months: BinaryTreeNode<Month>
 };
 
 export default class Year extends ValueObject<Props> {
