@@ -12,6 +12,10 @@ export default class DateTime extends ValueObject<Props>{
         super(props)
     }
 
+    public getFullYear(): number {
+        return this.props.value.getFullYear();
+    }
+
     public getTime(): number {
         return this.props.value.getTime();
     }

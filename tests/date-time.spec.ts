@@ -34,4 +34,10 @@ describe('date-time', () => {
         expect(dateB.diffInDays(dateA)).toBe(367);
         expect(dateA.diffInDays(dateA)).toBe(0);
     });
+
+    it('should get full year', () => {
+        const value = new Date('2024-01-01T00:00:00');
+        const date = DateTime.create({ value }).value();
+        expect(date.getFullYear()).toBe(2024);
+    });
 });
