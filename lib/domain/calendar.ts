@@ -1,4 +1,4 @@
-import { Aggregate } from "rich-domain"
+import { Aggregate, Ok, Result } from "rich-domain"
 import TimeLine from "@domain/time-line"
 import Config from "@domain/config";
 
@@ -8,7 +8,12 @@ type Props = {
 }
 
 export default class Calendar extends Aggregate<Props> {
-    /**
-     * @todo implementar métodos
-     */
+    
+    private constructor(props: Props){
+        super(props);
+    }
+
+    public static create(props: Props): Result<Calendar> {
+        return Ok(new Calendar(props));
+    }
 }

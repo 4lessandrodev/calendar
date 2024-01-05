@@ -3,11 +3,22 @@ export default class BinaryTreeNode<T> {
     private left: BinaryTreeNode<T> | null;
     private right: BinaryTreeNode<T> | null;
 
-
     constructor(value: T) {
         this.value = value;
         this.left = null;
         this.right = null;
+    }
+
+    head(): T {
+        return this.value;
+    }
+
+    next(): BinaryTreeNode<T> | null {
+        return this.left;
+    }
+
+    prev(): BinaryTreeNode<T> | null {
+        return this.right;
     }
 
     setLeft(child: BinaryTreeNode<T>): BinaryTreeNode<T> {

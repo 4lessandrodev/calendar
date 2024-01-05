@@ -1,4 +1,4 @@
-import { ValueObject } from "rich-domain";
+import { Ok, Result, ValueObject } from "rich-domain";
 import Year from "@domain/year";
 import BinaryTreeNode from "@domain/binary-tree-node";
 
@@ -7,7 +7,12 @@ type Props = {
 };
 
 export default class TimeLine extends ValueObject<Props> {
-    /**
-     * @todo implementar métodos
-     */
+    
+    private constructor(props: Props){
+        super(props);
+    }
+
+    public static create(props: Props): Result<TimeLine> {
+        return Ok(new TimeLine(props));
+    }
 }

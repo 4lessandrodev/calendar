@@ -1,4 +1,4 @@
-import { ValueObject } from "rich-domain";
+import { Ok, Result, ValueObject } from "rich-domain";
 import BinaryTreeNode from "@domain/binary-tree-node";
 import Month from "@domain/month";
 
@@ -8,7 +8,12 @@ type Props = {
 };
 
 export default class Year extends ValueObject<Props> {
-    /**
-     * @todo implementar métodos
-     */
+    
+    private constructor(props: Props){
+        super(props);
+    }
+
+    public static create(props: Props): Result<Year> {
+        return Ok(new Year(props));
+    }
 }
