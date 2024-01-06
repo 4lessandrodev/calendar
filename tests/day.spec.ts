@@ -1,5 +1,4 @@
 import Day from "@/domain/day";
-import Hour from "@/domain/hour";
 import Slot from "@/domain/slot";
 import TreeNode from "@/domain/tree-node";
 
@@ -8,9 +7,7 @@ describe('Day', () => {
 
         const slot = Slot.create({ start: '00:00', end: '00:15' }).value();
         const slots = new TreeNode(slot);
-        const hour = Hour.create({ slots, hour: 1 }).value();
-        const hours = new TreeNode(hour);
-        const day = Day.create({ day: 1, hours, week: 1 });
+        const day = Day.create({ day: 1, slots, week: 1 });
         expect(day.isOk()).toBeTruthy();
     });
 
@@ -18,9 +15,7 @@ describe('Day', () => {
 
         const slot = Slot.create({ start: '00:00', end: '00:15' }).value();
         const slots = new TreeNode(slot);
-        const hour = Hour.create({ slots, hour: 1 }).value();
-        const hours = new TreeNode(hour);
-        const day = Day.create({ day: 1, hours, week: 53 });
+        const day = Day.create({ day: 1, slots, week: 53 });
         expect(day.isFail()).toBeTruthy();
     });
 
@@ -28,9 +23,7 @@ describe('Day', () => {
 
         const slot = Slot.create({ start: '00:00', end: '00:15' }).value();
         const slots = new TreeNode(slot);
-        const hour = Hour.create({ slots, hour: 1 }).value();
-        const hours = new TreeNode(hour);
-        const day = Day.create({ day: 1, hours, week: 0 });
+        const day = Day.create({ day: 1, slots, week: 0 });
         expect(day.isFail()).toBeTruthy();
     });
 
@@ -38,9 +31,7 @@ describe('Day', () => {
 
         const slot = Slot.create({ start: '00:00', end: '00:15' }).value();
         const slots = new TreeNode(slot);
-        const hour = Hour.create({ slots, hour: 1 }).value();
-        const hours = new TreeNode(hour);
-        const day = Day.create({ day: 0, hours, week: 1 });
+        const day = Day.create({ day: 0, slots, week: 1 });
         expect(day.isFail()).toBeTruthy();
     });
 
@@ -48,9 +39,7 @@ describe('Day', () => {
 
         const slot = Slot.create({ start: '00:00', end: '00:15' }).value();
         const slots = new TreeNode(slot);
-        const hour = Hour.create({ slots, hour: 1 }).value();
-        const hours = new TreeNode(hour);
-        const day = Day.create({ day: 32, hours, week: 1 });
+        const day = Day.create({ day: 32, slots, week: 1 });
         expect(day.isFail()).toBeTruthy();
     });
 });

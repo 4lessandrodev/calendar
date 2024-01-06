@@ -14,7 +14,7 @@ export default class ConfigEveryDay implements CalendarConfig {
     
         // iterar todos os dias
         // iniciando na data inicial da config e finalizando na data final da config
-        const day = Day.create({ day: 1, slots }).value();
+        const day = Day.create({ day: 1, slots, week: 1 }).value();
         
         // encontrar o meio do intervalo e fazer a head ser metade
         const days = new BinaryTreeNode(day);
