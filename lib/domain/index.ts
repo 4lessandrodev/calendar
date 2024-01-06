@@ -6,6 +6,7 @@ export * from './day';
 export * from './list';
 export * from './minute';
 export * from './month';
+export * from './operation';
 export * from './slot-duration';
 export * from './slot';
 export * from './time-line';

@@ -1,11 +1,13 @@
 import { Entity, Fail, Ok, Result } from 'rich-domain';
 import DateTime from '@domain/date';
 import SlotDuration from '@domain/slot-duration';
+import Operation from '@domain/operation';
 
 type Props = {
     startDate: DateTime;
     endDate: DateTime;
     slotDuration: SlotDuration;
+    operation: Operation;
 };
 
 export default class Config extends Entity<Props> {

@@ -1,9 +1,14 @@
 import Config from "@/domain/config";
+import ConfigEveryDay from "@/domain/config-every-day";
 import DateTime from "@/domain/date";
 import Minute from "@/domain/minute";
+import OperationBuilder from "@/domain/operation-builder";
 import SlotDuration from "@/domain/slot-duration";
 
 describe('Config', () => {
+
+    const operation = new OperationBuilder(new ConfigEveryDay());
+
     it('should create a calendar config with success', () => {
 
         const minutes = Minute.create({ value: 15 }).value();
@@ -15,6 +20,7 @@ describe('Config', () => {
             startDate,
             endDate,
             slotDuration,
+            operation
         });
 
         expect(config.isOk()).toBeTruthy();
@@ -30,6 +36,7 @@ describe('Config', () => {
             startDate,
             endDate,
             slotDuration,
+            operation
         });
 
         expect(config.isFail()).toBeTruthy();
@@ -45,6 +52,7 @@ describe('Config', () => {
             startDate,
             endDate,
             slotDuration,
+            operation
         });
 
         expect(config.isFail()).toBeTruthy();

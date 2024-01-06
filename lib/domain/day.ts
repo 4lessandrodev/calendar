@@ -1,11 +1,11 @@
 import { Fail, Ok, Result, ValueObject } from "rich-domain";
 import TreeNode from "@domain/tree-node";
-import Hour from "@/domain/hour";
+import Slot from "./slot";
 
 type Props = {
     week: number;
     day: number;
-    hours: TreeNode<Hour>
+    slots: TreeNode<Slot>
 }
 
 export default class Day extends ValueObject<Props> {
