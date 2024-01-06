@@ -9,14 +9,17 @@ import Slot from "@domain/slot";
 
 export default class ConfigEveryDay implements CalendarConfig {
     applyConfig(props: CalendarConfigProps, config: Config): TimeLine {
-        // implementar algoritmo para criar a timeline
-
-        // Gerar slots
+        // Gerar slots para o range do dia
         const slots = Slot.generateSlotForDay(props.startAt, props.endsAt, config.get('slotDuration'));
     
+        // iterar todos os dias
+        // iniciando na data inicial da config e finalizando na data final da config
         const day = Day.create({ day: 1, slots }).value();
+        
+        // encontrar o meio do intervalo e fazer a head ser metade
         const days = new BinaryTreeNode(day);
 
+        
         const month = Month.create({ month: 1, days }).value();
         const months = new BinaryTreeNode(month);
         const year = Year.create({ year: 2020, months }).value();
