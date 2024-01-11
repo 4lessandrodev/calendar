@@ -20,6 +20,22 @@ export default class DateTime extends ValueObject<Props>{
         return this.props.value.getTime();
     }
 
+    public getDate(): number {
+        const current = this.props.value;
+        return current.getDate();
+    }
+
+    public getMonth(): number {
+        const current = this.props.value;
+        return current.getMonth() + 1;
+    }
+
+    public addDays(days: number): DateTime {
+        const currentTime = this.props.value.getTime();
+        const value = new Date(currentTime + (this.oneDayInMs * days));
+        return new DateTime({ value });
+    }
+
     public isGt(date: DateTime): boolean {
         const currentTime = this.getTime();
         return currentTime > date.getTime();

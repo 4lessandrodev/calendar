@@ -1,9 +1,9 @@
 import { Ok, Result, ValueObject } from "rich-domain";
-import Year from "@domain/year";
 import BinaryTreeNode from "@domain/binary-tree-node";
+import Day from "@domain/day";
 
 type Props = {
-    years: BinaryTreeNode<Year>;
+    days: BinaryTreeNode<Day>;
 };
 
 export default class TimeLine extends ValueObject<Props> {

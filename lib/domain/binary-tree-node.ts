@@ -9,15 +9,25 @@ export default class BinaryTreeNode<T> {
         this.right = null;
     }
 
+    /** @ts-ignore */
+    toObject() {
+        return {
+            /** @ts-ignore */
+            value: this.value.toObject(),
+            left: this.left ? this.left.toObject() : null,
+            right: this.right ? this.right.toObject() : null,
+        }
+    }
+
     head(): T {
         return this.value;
     }
 
-    next(): BinaryTreeNode<T> | null {
+    leftNode(): BinaryTreeNode<T> | null {
         return this.left;
     }
 
-    prev(): BinaryTreeNode<T> | null {
+    rightNode(): BinaryTreeNode<T> | null {
         return this.right;
     }
 
@@ -29,5 +39,15 @@ export default class BinaryTreeNode<T> {
     setRight(child: BinaryTreeNode<T>): BinaryTreeNode<T> {
         this.right = child;
         return this;
+    }
+
+    addItem(nodeRef: BinaryTreeNode<T>, item: BinaryTreeNode<T>, compareFn: (a: BinaryTreeNode<T>, b: BinaryTreeNode<T>) => 'left' | 'right' | undefined): void {
+        const direction = compareFn(nodeRef, item) ?? '' as 'left';
+        if(nodeRef?.[direction]?.head()){
+            const ref = nodeRef[direction]!;
+            return ref.addItem(ref, item, compareFn);
+        }
+        nodeRef[direction] = item;
+        return;
     }
 }
