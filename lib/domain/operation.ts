@@ -1,9 +1,12 @@
 import TimeLine from "@domain/time-line";
 import Config from "@domain/config";
+import Time from "./time";
 
 export type CalendarConfigProps = {
-    startAt: string; // hh:mm
-    endsAt: string; // hh:mm
+    startAt: Time; // hh:mm
+    endsAt: Time; // hh:mm
+    daysInterval: number; // a cada 15/30 dias
+    weekDays: number[] // dias da semana (0-6) 0: dom - 6: sab
 }
 
 export abstract class CalendarConfig {

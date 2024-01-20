@@ -1,13 +1,20 @@
 import { Entity, Fail, Ok, Result } from 'rich-domain';
 import DateTime from '@domain/date';
 import SlotDuration from '@domain/slot-duration';
-import Operation from '@domain/operation';
+import Time from './time';
+
+type PeriodProps = {
+    startAt: Time; // hh:mm
+    endsAt: Time; // hh:mm
+    daysInterval: number; // a cada 15/30 dias
+    weekDays: number[] // dias da semana (0-6) 0: dom - 6: sab
+}
 
 type Props = {
     startDate: DateTime;
     endDate: DateTime;
     slotDuration: SlotDuration;
-    operation: Operation;
+    period: PeriodProps;
 };
 
 export default class Config extends Entity<Props> {
