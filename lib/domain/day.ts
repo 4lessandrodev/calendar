@@ -10,7 +10,8 @@ type Props = {
 
 export default class Day extends ValueObject<Props> {
     private static readonly minDay: number = 1577847600000 // 2020;
-    private static readonly maxDay: number = 1893466800000 // 2030;
+    private static readonly maxDay: number = 2524618800000 // 2050;
+    private readonly onDay: number = 86400000
 
     private constructor(props: Props) {
         super(props);
@@ -29,6 +30,20 @@ export default class Day extends ValueObject<Props> {
             timeStamp: this.props.timeStamp,
             slots: this.props.slots.toObject(),
         }
+    }
+
+    addDays(days: number): Date {
+        const calc = this.util.number;
+        const current = this.props.timeStamp;
+        const daysInMs = calc(days).multiplyBy(this.onDay);
+        const total = calc(current).sum(daysInMs);
+        return new Date(total);
+    }
+
+    isLastMonthDay(): boolean {
+        const currentMonth = this.getMonth();
+        const nextMonth = this.addDays(1).getMonth() + 1; // month starts in 0
+        return nextMonth > currentMonth;
     }
 
     /** @returns timeStamp as number */

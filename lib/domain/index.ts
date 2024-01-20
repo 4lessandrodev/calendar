@@ -4,6 +4,8 @@ export * from './config-every-day'
 export * from './config';
 export * from './date';
 export * from './day';
+export * from './days-interval';
+export * from './every-month-day';
 export * from './hour';
 export * from './list';
 export * from './minute';

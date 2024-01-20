@@ -52,13 +52,15 @@ export default class Time extends ValueObject<Props> {
     }
 
     private formatHour(hours: number): string {
+        if (hours <= 0) return '00';
         if (hours <= 9) return `0${hours}`;
         if (hours >= 24) return this.formatHour(hours % 24);
         return `${hours}`;
     }
 
     private formatMinutes(minute: number): string {
-        if (minute <= 0) return `0${minute}`;
+        if (minute <= 0) return '00';
+        if (minute <= 9) return `0${minute}`;
         if (minute >= 60) return this.formatHour(minute % 60);
         return `${minute}`;
     }
@@ -108,6 +110,11 @@ export default class Time extends ValueObject<Props> {
         return this.validator.string(value).match(this.regex);
     }
 
+    /**
+     * @description value must to have pattern hh:mm
+     * @param props as { value: "00:00" }
+     * @returns Result
+     */
     public static create(props: Props): Result<Time> {
         const isValid = this.isValidProps(props);
         if (!isValid) return Fail('Invalid value for time. hh:mm');
