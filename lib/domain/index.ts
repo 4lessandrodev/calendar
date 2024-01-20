@@ -17,3 +17,4 @@ export * from './time';
 export * from './tree-node';
 export * from './week';
 export * from './year';
+export * from './week-day';

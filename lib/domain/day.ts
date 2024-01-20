@@ -1,6 +1,7 @@
-import { Fail, IAdapter, Ok, Result, ValueObject } from "rich-domain";
+import { Fail, Ok, Result, ValueObject } from "rich-domain";
 import TreeNode from "@domain/tree-node";
-import Slot from "./slot";
+import Slot from "@domain/slot";
+import WeekDay from "@domain/week-day";
 
 type Props = {
     timeStamp: number;
@@ -46,6 +47,11 @@ export default class Day extends ValueObject<Props> {
     /** @returns month date (1-31) */
     public getDate(): number {
         return new Date(this.props.timeStamp).getDate();
+    }
+
+    public getWeekDay(): WeekDay {
+        const value = new Date(this.props.timeStamp).getDay() as 1 | 6;
+        return WeekDay.create({ value }).value();
     }
 
     public isGt(timeStamp: number): boolean {

@@ -1,13 +1,14 @@
 import { Entity, Fail, Ok, Result } from 'rich-domain';
 import DateTime from '@domain/date';
 import SlotDuration from '@domain/slot-duration';
-import Time from './time';
+import Time from '@domain/time';
+import WeekDay from '@domain/week-day';
 
 type PeriodProps = {
     startAt: Time; // hh:mm
     endsAt: Time; // hh:mm
-    daysInterval: number; // a cada 15/30 dias
-    weekDays: number[] // dias da semana (0-6) 0: dom - 6: sab
+    onDaysInterval: number; // a cada 15/30 dias
+    everyWeekDays: WeekDay[] // dias da semana (0-6) 0: dom - 6: sab
 }
 
 type Props = {

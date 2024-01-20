@@ -1,7 +1,7 @@
 import { Fail, Ok, Result, ValueObject } from "rich-domain";
 import SlotDuration from "@domain/slot-duration";
 import TreeNode from "@domain/tree-node";
-import Time from "./time";
+import Time from "@domain/time";
 
 type Props = {
     start: Time; // 08:30
