@@ -4,6 +4,7 @@ import Config from "@domain/config";
 import BinaryTreeNode from "@domain/binary-tree-node";
 import Day from "@domain/day";
 import Slot from "@domain/slot";
+import reorderForAVL from "@/helpers/reorder-for-avl";
 
 export default class ConfigEveryDay implements CalendarConfig {
     applyConfig(props: CalendarConfigProps, config: Config): TimeLine {
@@ -27,25 +28,21 @@ export default class ConfigEveryDay implements CalendarConfig {
             index++;
         }
 
-        // balancear a arvore
-        // ate a metade
-        const middle = Math.trunc(trees.size / 2);
-        const root = trees.get(middle)!;
-        let increment = middle;
-        let decrement = middle;
         const compareFn = (a: BinaryTreeNode<Day>, b: BinaryTreeNode<Day>): 'left' | 'right' | undefined => {
             if (a.head().isGt(b.head().getTime())) return 'left';
             if (a.head().isLt(b.head().getTime())) return 'right';
             return undefined;
         };
 
-        while (increment < trees.size || decrement > 0) {
-            ++increment;
-            --decrement;
-            const left = trees.get(decrement);
-            const right = trees.get(increment);
-            if (left) root.addItem(root, left, compareFn);
-            if (right) root.addItem(root, right, compareFn);
+        const avlOrder = reorderForAVL([...trees.keys()]);
+        let iteration = 1;
+        const firstIndex = avlOrder[0];
+        const root = trees.get(firstIndex);
+        while (iteration < trees.size && root) {
+            const index = avlOrder[iteration];
+            const item = trees.get(index);
+            if (item) root.addItem(root, item, compareFn);
+            iteration++;
         }
 
         // const years = new BinaryTreeNode(year);
