@@ -1,6 +1,6 @@
 export * from './binary-tree-node';
 export * from './calendar';
-export * from './config-every-day'
+export * from './config-week-days'
 export * from './config';
 export * from './date';
 export * from './day';

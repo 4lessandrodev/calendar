@@ -19,6 +19,10 @@ export default class WeekDay extends ValueObject<Props> {
         super(props);
     }
 
+    hasSomeWeekDay(weekDays: WeekDay[]): boolean {
+        return weekDays.some((wk): boolean => wk.getDayName() === this.getDayName());
+    }
+
     isWeekend(): boolean {
         const compare = this.validator.number;
         const current = compare(this.props.value);

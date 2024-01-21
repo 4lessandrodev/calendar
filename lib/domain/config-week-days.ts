@@ -1,29 +1,41 @@
-import { CalendarConfig, CalendarConfigProps } from "@domain/operation";
+import { CalendarConfig } from "@domain/operation";
 import TimeLine from "@domain/time-line";
-import Config from "@domain/config";
+import { ConfigProps } from "@domain/config";
 import BinaryTreeNode from "@domain/binary-tree-node";
 import Day from "@domain/day";
 import Slot from "@domain/slot";
 import reorderForAVL from "@/helpers/reorder-for-avl";
 
-export default class ConfigEveryDay implements CalendarConfig {
-    applyConfig(props: CalendarConfigProps, config: Config): TimeLine {
+export default class ConfigWeekDays implements CalendarConfig {
+    applyConfig(config: ConfigProps): TimeLine {
         // Gerar slots para o range do dia
-        const slots = Slot.generateSlotForDay(props.startAt, props.endsAt, config.get('slotDuration'));
+
+        const startsAt = config.period.startAt;
+        const endsAt = config.period.endsAt;
+        const slotDuration = config.slotDuration;
+        const weekDays = config.period.weekDays;
+
+        const slots = Slot.generateSlotForDay(startsAt, endsAt, slotDuration);
 
         // iterar todos os dias
         // iniciando na data inicial da config e finalizando na data final da config
-        const startDate = config.get('startDate');
-        const endDate = config.get('endDate')
+        const startDate = config.startDate;
+        const endDate = config.endDate;
 
         let targetDateTime = startDate;
         const trees: Map<number, BinaryTreeNode<Day>> = new Map();
 
         let index = 0;
-        while (targetDateTime.getTime() < endDate.getTime()) {
+        while (endDate.isGt(targetDateTime)) {
             const timeStamp = targetDateTime.getTime();
-            const days = Day.create({ slots, timeStamp }).value();
-            trees.set(index, new BinaryTreeNode(days));
+            const day = Day.create({ slots, timeStamp }).value();
+            const canAdd = day.hasWeekDay(weekDays);
+            if (!canAdd) { 
+                index++;
+                targetDateTime = targetDateTime.addDays(1);
+                continue; 
+            };
+            trees.set(index, new BinaryTreeNode(day));
             targetDateTime = targetDateTime.addDays(1);
             index++;
         }

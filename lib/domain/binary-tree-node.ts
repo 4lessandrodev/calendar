@@ -13,7 +13,7 @@ export default class BinaryTreeNode<T> {
     toObject() {
         return {
             /** @ts-ignore */
-            value: this.value.toObject(),
+            value: this.value ? this.value.toObject() : null,
             left: this.left ? this.left.toObject() : null,
             right: this.right ? this.right.toObject() : null,
         }

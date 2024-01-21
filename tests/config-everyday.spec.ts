@@ -1,21 +1,32 @@
-import Config from "@/domain/config";
-import ConfigEveryDay from "@/domain/config-every-day";
+import { PeriodProps } from "@/domain/config";
+import ConfigWeekDays from "@/domain/config-week-days";
 import DateTime from "@/domain/date";
 import Minute from "@/domain/minute";
-import OperationBuilder from "@/domain/operation-builder";
 import SlotDuration from "@/domain/slot-duration";
+import Time from "@/domain/time";
 import { writeFileSync } from 'fs'
 
 describe('ConfigEveryDay', () => {
     it('should create timeline with success', () => {
-        const service = new ConfigEveryDay();
+        const service = new ConfigWeekDays();
         const minutes = Minute.create({ value: 15 }).value();
         const startDate = DateTime.create({ value: new Date('2024-01-01T00:00:00') }).value();
         const endDate = DateTime.create({ value: new Date('2024-01-03T00:00:00') }).value();
         const slotDuration = SlotDuration.create({ minutes }).value();
-        const operation = new OperationBuilder(service);
-        const config = Config.create({ startDate, endDate, slotDuration, operation }).value();
-        const result = service.applyConfig({ startAt: '08:00', endsAt: '14:00' }, config);
+        const period: PeriodProps = {
+            daysInterval: null,
+            endsAt: Time.create({ value: '14:00' }).value(),
+            everyMonthDay: null,
+            startAt: Time.create({ value: '08:00' }).value(),
+            weekDays: []
+        };
+        const configProps = {
+            startDate,
+            endDate,
+            slotDuration,
+            period
+        }
+        const result = service.applyConfig(configProps);
 
         const a = result.get('days');
         expect(a.toObject()).toMatchObject(
@@ -570,14 +581,26 @@ describe('ConfigEveryDay', () => {
     });
 
     it.only('should create timeline with success', () => {
-        const service = new ConfigEveryDay();
+        const service = new ConfigWeekDays();
         const minutes = Minute.create({ value: 15 }).value();
         const startDate = DateTime.create({ value: new Date('2024-01-01T00:00:00') }).value();
         const endDate = DateTime.create({ value: new Date('2024-01-16T00:00:00') }).value();
         const slotDuration = SlotDuration.create({ minutes }).value();
-        const operation = new OperationBuilder(service);
-        const config = Config.create({ startDate, endDate, slotDuration, operation }).value();
-        const result = service.applyConfig({ startAt: '08:00', endsAt: '12:00' }, config);
+        const period: PeriodProps = {
+            daysInterval: null,
+            endsAt: Time.create({ value: '12:00' }).value(),
+            everyMonthDay: null,
+            startAt: Time.create({ value: '08:00' }).value(),
+            weekDays: []
+        };
+        const configProps = {
+            startDate,
+            endDate,
+            slotDuration,
+            period
+        }
+
+        const result = service.applyConfig(configProps);
 
         const a = result.get('days').toObject();
         writeFileSync('result.json', JSON.stringify(a, null, 2), 'utf8');

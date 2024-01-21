@@ -32,6 +32,12 @@ export default class Day extends ValueObject<Props> {
         }
     }
 
+    hasWeekDay(weekDays: WeekDay[]): boolean {
+        const value = new Date(this.props.timeStamp).getDay() as 1 | 6;
+        const weekDay = WeekDay.create({ value }).value();
+        return weekDay.hasSomeWeekDay(weekDays);
+    }
+
     addDays(days: number): Date {
         const calc = this.util.number;
         const current = this.props.timeStamp;
@@ -82,7 +88,7 @@ export default class Day extends ValueObject<Props> {
     }
 
     public dayBelongsToMonth(month: number): boolean {
-        return this.validator.number(this.props.timeStamp).isEqualTo(month);
+        return this.validator.number(this.getMonth()).isEqualTo(month);
     }
 
     public static create(props: Props): Result<Day> {

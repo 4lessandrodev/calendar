@@ -27,25 +27,29 @@ export default class DateTime extends ValueObject<Props>{
 
     public getMonth(): number {
         const current = this.props.value;
-        return current.getMonth() + 1;
+        return this.util.number(current.getMonth()).sum(1);
     }
 
     public addDays(days: number): DateTime {
+        const calc = this.util.number;
         const currentTime = this.props.value.getTime();
-        const value = new Date(currentTime + (this.oneDayInMs * days));
-        return new DateTime({ value });
+        const daysInMs = calc(this.oneDayInMs).multiplyBy(days);
+        const value = calc(currentTime).sum(daysInMs)
+        return new DateTime({ value: new Date(value) });
     }
 
     public isGt(date: DateTime): boolean {
+        const calc = this.validator.number;
         const currentTime = this.getTime();
-        return currentTime > date.getTime();
+        return calc(currentTime).isGreaterThan(date.getTime());
     }
 
     public diffInDays(date: DateTime): number {
+        const calc = this.util.number;
         const currentTime = this.getTime();
         const dtTime = date.getTime();
-        const diff = currentTime - dtTime;
-        return Math.trunc(diff / this.oneDayInMs);
+        const diff = calc(currentTime).subtract(dtTime);
+        return Math.trunc(calc(diff).divideBy(this.oneDayInMs));
     }
 
     public static create(props: Props): Result<DateTime> {

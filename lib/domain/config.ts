@@ -39,6 +39,14 @@ export default class Config extends Entity<ConfigProps> {
         return this.props.period.weekDays.length > 0;
     }
 
+    hasSomeConfig(): boolean {
+        return (
+            this.isConfigByMonthDay() ||
+            this.isConfigByDaysInterval() ||
+            this.isConfigByWeekDays()
+        )
+    }
+
     public static isValidProps({ startDate, endDate }: ConfigProps): boolean {
         const diffInDays = endDate.diffInDays(startDate);
         const hasMoreThanOneDay = this.validator.number(diffInDays).isGreaterThan(1);
@@ -49,6 +57,9 @@ export default class Config extends Entity<ConfigProps> {
         const isValid = this.isValidProps(props);
         const msg = 'The difference between startDate and endDate must be more than one day.';
         if (!isValid) return Fail(msg);
-        return Ok(new Config(props));
+        const config = new Config(props);
+        const hasConfig = config.hasSomeConfig();
+        if (!hasConfig) return Fail('None valid config provided');
+        return Ok(config);
     }
 };

@@ -2,13 +2,17 @@ import BinaryTreeNode from "@/domain/binary-tree-node";
 import Day from "@/domain/day";
 import Month from "@/domain/month";
 import Slot from "@/domain/slot";
+import Time from "@/domain/time";
 import TreeNode from "@/domain/tree-node";
 import Year from "@/domain/year";
 
 describe('Year', () => {
-    it('should create year with success', () => {
 
-        const slot = Slot.create({ start: '00:00', end: '00:15' }).value();
+    const start = Time.create({ value: '01:00' }).value();
+    const end = Time.create({ value: '01:15' }).value();
+
+    it('should create year with success', () => {
+        const slot = Slot.create({ start, end }).value();
         const slots = new TreeNode(slot);
         const day = Day.create({ timeStamp: 1704684836639, slots }).value();
         const days = new BinaryTreeNode(day);
@@ -19,7 +23,7 @@ describe('Year', () => {
     });
 
     it('should return fail if provide year gt 2050', () => {
-        const slot = Slot.create({ start: '00:00', end: '00:15' }).value();
+        const slot = Slot.create({ start, end }).value();
         const slots = new TreeNode(slot);
         const day = Day.create({ timeStamp: 1704684836639, slots }).value();
         const days = new BinaryTreeNode(day);
@@ -30,7 +34,7 @@ describe('Year', () => {
     });
 
     it('should return fail if provide year lt 2020', () => {
-        const slot = Slot.create({ start: '00:00', end: '00:15' }).value();
+        const slot = Slot.create({ start, end }).value();
         const slots = new TreeNode(slot);
         const day = Day.create({ timeStamp: 1704684836639, slots }).value();
         const days = new BinaryTreeNode(day);

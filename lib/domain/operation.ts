@@ -1,5 +1,5 @@
 import TimeLine from "@domain/time-line";
-import Config, { ConfigProps } from "@domain/config";
+import { ConfigProps } from "@domain/config";
 
 export abstract class CalendarConfig {
     abstract applyConfig(params: ConfigProps): TimeLine;

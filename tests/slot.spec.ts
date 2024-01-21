@@ -1,39 +1,40 @@
 import Minute from "@/domain/minute";
 import Slot from "@/domain/slot";
 import SlotDuration from "@/domain/slot-duration";
+import Time from "@/domain/time";
 
 describe('Slot', () => {
     it('should crete valid slot', () => {
-        const start = '08:00';
-        const end = '08:15';
+        const start = Time.create({ value: '08:00' }).value();
+        const end = Time.create({ value: '08:15' }).value();
         const slot = Slot.create({ start, end });
         expect(slot.isOk()).toBeTruthy();
     });
 
     it('should return fail if end lte star', () => {
-        const start = '08:00';
-        const end = '08:00';
+        const start = Time.create({ value: '08:00' }).value();
+        const end = Time.create({ value: '08:00' }).value();
         const slot = Slot.create({ start, end });
         expect(slot.isFail()).toBeTruthy();
     });
 
     it('should return fail on invalid pattern', () => {
-        const start = '08:90';
-        const end = '08:00';
+        const start = Time.create({ value: '08:90' }).value();
+        const end = Time.create({ value: '08:00' }).value();
         const slot = Slot.create({ start, end });
         expect(slot.isFail()).toBeTruthy();
     });
 
     it('should return fail on invalid pattern', () => {
-        const start = '0850';
-        const end = '08:00';
+        const start = Time.create({ value: '0850' }).value();
+        const end = Time.create({ value: '08:00' }).value();
         const slot = Slot.create({ start, end });
         expect(slot.isFail()).toBeTruthy();
     });
 
     it('should increment 15 minutes to slot', () => {
-        const start = '08:00';
-        const end = '08:15';
+        const start = Time.create({ value: '08:00' }).value();
+        const end = Time.create({ value: '08:15' }).value();
         const slot = Slot.create({ start, end }).value();
         const duration = SlotDuration.create({ minutes: Minute.create({ value: 15 }).value() }).value();
 
@@ -83,7 +84,7 @@ describe('Slot', () => {
     });
 
     it('should generate first slot based in duration', () => {
-        const start = '08:00';
+        const start = Time.create({ value: '08:00' }).value();
         const duration = SlotDuration.create({ minutes: Minute.create({ value: 15 }).value() }).value();
 
         const slot = Slot.first(start, duration);
@@ -96,8 +97,8 @@ describe('Slot', () => {
     });
 
     it('should generate slots for a day', () => {
-        const startsAt = '08:00';
-        const endsAt = '15:00';
+        const startsAt = Time.create({ value: '08:00' }).value();
+        const endsAt = Time.create({ value: '15:00' }).value();
         const duration = SlotDuration.create({ minutes: Minute.create({ value: 15 }).value() }).value();
 
         const tree = Slot.generateSlotForDay(startsAt, endsAt, duration);

@@ -1,14 +1,13 @@
 import Operation, { CalendarConfig } from "@domain/operation";
-import { CalendarConfigProps } from "@domain/operation";
 import TimeLine from "@domain/time-line";
-import Config from "@domain/config";
+import { ConfigProps } from "@domain/config";
 
 export default class OperationBuilder implements Operation {
 
     constructor(private config: CalendarConfig) { }
 
-    apply(params: CalendarConfigProps, config: Config): TimeLine {
-        return this.config.applyConfig(params, config);
+    apply(config: ConfigProps): TimeLine {
+        return this.config.applyConfig(config);
     }
 
     change(config: CalendarConfig): Operation {
