@@ -24,7 +24,7 @@ export default class Slot extends ValueObject<Props> {
         const first = Slot.first(start, duration);
         slots.push(first);
         let i = 0;
-        while (slots[i] && slots[i].get('end') < end) {
+        while (slots[i] && end.isGt(slots[i].get('end'))) {
             const lastSlot = slots[i];
             slots.push(lastSlot.increment(duration));
             i++;
@@ -43,7 +43,7 @@ export default class Slot extends ValueObject<Props> {
     }
 
     public static isValidProps({ start, end }: Props): boolean {
-        return end.isGt(start);
+        return start && end && end.isGt(start);
     }
 
     public static create(props: Props): Result<Slot> {

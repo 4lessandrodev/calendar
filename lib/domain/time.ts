@@ -51,23 +51,25 @@ export default class Time extends ValueObject<Props> {
         return this.getTime() > other.getTime();
     }
 
-    private formatHour(hours: number): string {
+    private static formatHour(hours: number): string {
         if (hours <= 0) return '00';
         if (hours <= 9) return `0${hours}`;
         if (hours >= 24) return this.formatHour(hours % 24);
         return `${hours}`;
     }
 
-    private formatMinutes(minute: number): string {
+    private static formatMinutes(minute: number): string {
         if (minute <= 0) return '00';
         if (minute <= 9) return `0${minute}`;
         if (minute >= 60) return this.formatHour(minute % 60);
         return `${minute}`;
     }
 
-    format(hours: number, minutes: number): string {
+    public static format(hours: number, minutes: number): string {
+        const calc = this.util.number;
+        const restHour = Math.trunc(calc(minutes).divideBy(60));
         const minute = this.formatMinutes(minutes);
-        const hour = this.formatHour(hours);
+        const hour = this.formatHour(calc(hours).sum(restHour));
         return `${hour}:${minute}`;
     }
 
@@ -77,20 +79,20 @@ export default class Time extends ValueObject<Props> {
         const calc = this.util.number;
         const hour = calc(currentHour).sum(hours);
         const minute = this.getMinutes();
-        const value = this.format(hour, minute);
+        const value = Time.format(hour, minute);
         return new Time({ value });
     }
 
     private incrementMinutes(minutes: number): Time {
         if (minutes <= 0) return this;
         const calc = this.util.number;
-        const hours = Math.trunc(minutes % 60);
+        const hours = Math.trunc(calc(minutes).divideBy(60));
         const instance = this.incrementHours(hours);
         const minDec = calc(hours).multiplyBy(60);
         const rmHours = calc(minutes).subtract(minDec);
         const minute = calc(rmHours).sum(instance.getMinutes());
         const hour = instance.getHours();
-        const value = this.format(hour, minute);
+        const value = Time.format(hour, minute);
         return new Time({ value });
     }
 
@@ -99,8 +101,9 @@ export default class Time extends ValueObject<Props> {
      * @returns new instance of Time
      */
     increment(minutes: Minute): Time {
+        const calc = this.util.number
         const value = minutes.get('value');
-        const hours = Math.trunc(value / 60);
+        const hours = Math.trunc(calc(value).divideBy(60));
         const minute = value % 60;
         const instance = this.incrementHours(hours);
         return instance.incrementMinutes(minute);
